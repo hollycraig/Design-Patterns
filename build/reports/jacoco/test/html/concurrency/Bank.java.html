@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bank.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Soft Tutorials</a> &gt; <a href="index.source.html" class="el_package">concurrency</a> &gt; <span class="el_source">Bank.java</span></div><h1>Bank.java</h1><pre class="source lang-java linenums">package concurrency;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+<span class="nc" id="L6">public class Bank {</span>
+<span class="nc" id="L7">    private int account = 100;</span>
+<span class="nc" id="L8">    public Lock lock = new ReentrantLock();</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L11">        Bank account = new Bank();</span>
+<span class="nc" id="L12">        Thread adding = new Thread(new AddMoney(account));</span>
+<span class="nc" id="L13">        Thread subtracting = new Thread(new TakeMoney(account));</span>
+<span class="nc" id="L14">        adding.start();</span>
+<span class="nc" id="L15">        subtracting.start();</span>
+<span class="nc" id="L16">    }</span>
+
+    public void addMoney(int amount) {
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (amount &lt; 1) {</span>
+<span class="nc" id="L20">            System.out.print(&quot;Trying to add a negative amount to the account!&quot;);</span>
+<span class="nc" id="L21">            System.out.println(&quot; Transaction rejected.&quot;);</span>
+<span class="nc" id="L22">            return;</span>
+        }
+<span class="nc" id="L24">        int newBalance = account + amount;</span>
+<span class="nc" id="L25">        System.out.print(&quot;Account balance is &quot; + account + &quot;. Adding &quot; + amount + &quot;.&quot;);</span>
+<span class="nc" id="L26">        account = newBalance;</span>
+<span class="nc" id="L27">        System.out.println(&quot;New balance is &quot; + account + &quot;.&quot;);</span>
+<span class="nc" id="L28">        return;</span>
+    }
+
+    public void subtractMoney(int amount) {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (amount &lt; 1) {</span>
+<span class="nc" id="L33">            System.out.print(&quot;Trying to subtract a negative amount from the account!&quot;);</span>
+<span class="nc" id="L34">            System.out.println(&quot; That's generous, but the transaction is rejected.&quot;);</span>
+<span class="nc" id="L35">            return;</span>
+        }
+<span class="nc" id="L37">        int newBalance = account - amount;</span>
+<span class="nc" id="L38">        System.out.print(&quot;Account balance is &quot; + account + &quot;. Subtracting &quot; + amount + &quot;.&quot;);</span>
+<span class="nc" id="L39">        account = newBalance;</span>
+<span class="nc" id="L40">        System.out.println(&quot;New balance is &quot; + account + &quot;.&quot;);</span>
+<span class="nc" id="L41">        return;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

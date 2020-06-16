@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Animal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Soft Tutorials</a> &gt; <a href="index.source.html" class="el_package">lazyload</a> &gt; <span class="el_source">Animal.java</span></div><h1>Animal.java</h1><pre class="source lang-java linenums">package lazyload;
+
+public class Animal {
+    private String name;
+    private String species;
+    private String colour;
+    private String age;
+    private String animalClass;
+    private String numLegs;
+    int key;
+
+<span class="nc" id="L12">    public Animal(int key) {</span>
+        //would help if this was all one access
+<span class="nc" id="L14">        this.key = key;</span>
+<span class="nc" id="L15">    }</span>
+
+    //lazy initialisation
+    public String getName() {
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (name == null) {</span>
+<span class="nc" id="L20">            this.name = AnimalDataSource.getData(key, AnimalDataSource.Field.NAME);</span>
+        }
+<span class="nc" id="L22">        return name;</span>
+    }
+
+    public String getSpecies() {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (species == null) {</span>
+<span class="nc" id="L27">            this.species = AnimalDataSource.getData(key, AnimalDataSource.Field.SPECIES);</span>
+        }
+<span class="nc" id="L29">        return species;</span>
+    }
+
+    public String getColour() {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (this.colour == null) {</span>
+<span class="nc" id="L34">            this.colour = AnimalDataSource.getData(key, AnimalDataSource.Field.COLOUR);</span>
+        }
+
+<span class="nc" id="L37">        return colour;</span>
+    }
+
+    public String getAge() {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (this.age == null) {</span>
+<span class="nc" id="L42">            this.age = AnimalDataSource.getData(key, AnimalDataSource.Field.AGE);</span>
+        }
+
+<span class="nc" id="L45">        return age;</span>
+    }
+
+    public String getAnimalClass() {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (animalClass == null) {</span>
+<span class="nc" id="L50">            this.animalClass = AnimalDataSource.getData(key, AnimalDataSource.Field.ANIMAL_CLASS);</span>
+        }
+<span class="nc" id="L52">        return animalClass;</span>
+    }
+
+    public String getNumLegs() {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (numLegs == null) {</span>
+<span class="nc" id="L57">            this.numLegs = AnimalDataSource.getData(key, AnimalDataSource.Field.NUM_LEGS);</span>
+        }
+
+<span class="nc" id="L60">        return numLegs;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

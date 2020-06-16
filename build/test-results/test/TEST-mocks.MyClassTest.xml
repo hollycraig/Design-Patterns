@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mocks.MyClassTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-14T12:14:58" hostname="192-168-1-109.tpgi.com.au" time="2.063">
+  <properties/>
+  <testcase name="doSomething" classname="mocks.MyClassTest" time="2.063"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

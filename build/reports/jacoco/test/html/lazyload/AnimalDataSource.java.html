@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AnimalDataSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Soft Tutorials</a> &gt; <a href="index.source.html" class="el_package">lazyload</a> &gt; <span class="el_source">AnimalDataSource.java</span></div><h1>AnimalDataSource.java</h1><pre class="source lang-java linenums">package lazyload;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * This is an abstraction of a data source. It might be a network interface, it might be a sql database, it might be
+ * a computational platform generating some data - this is not relevant.
+ *
+ * The important point is, getting information out of this data source takes a LONG TIME. In this instance it takes a
+ * long time because of calls to Thread.sleep() - obviously this is just pretending to be something more complex.
+ */
+<span class="nc" id="L15">public class AnimalDataSource {</span>
+    private static List&lt;Map&lt;Field, String&gt;&gt; animals;
+
+    static {
+<span class="nc" id="L19">        animals = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L21">        Map&lt;Field, String&gt; bob = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L22">        Map&lt;Field, String&gt; lucy = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L23">        Map&lt;Field, String&gt; fred = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L25">        bob.put(Field.NAME, &quot;Bob&quot;);</span>
+<span class="nc" id="L26">        bob.put(Field.AGE, &quot;7&quot;);</span>
+<span class="nc" id="L27">        bob.put(Field.ANIMAL_CLASS, &quot;Mammal&quot;);</span>
+<span class="nc" id="L28">        bob.put(Field.COLOUR, &quot;Brown&quot;);</span>
+<span class="nc" id="L29">        bob.put(Field.SPECIES, &quot;Horse&quot;);</span>
+<span class="nc" id="L30">        bob.put(Field.NUM_LEGS, &quot;4&quot;);</span>
+
+<span class="nc" id="L32">        lucy.put(Field.NAME, &quot;Lucy&quot;);</span>
+<span class="nc" id="L33">        lucy.put(Field.AGE, &quot;2&quot;);</span>
+<span class="nc" id="L34">        lucy.put(Field.ANIMAL_CLASS, &quot;Reptile&quot;);</span>
+<span class="nc" id="L35">        lucy.put(Field.COLOUR, &quot;Yellow&quot;);</span>
+<span class="nc" id="L36">        lucy.put(Field.SPECIES, &quot;Python&quot;);</span>
+<span class="nc" id="L37">        lucy.put(Field.NUM_LEGS, &quot;0&quot;);</span>
+
+<span class="nc" id="L39">        fred.put(Field.NAME, &quot;Fred&quot;);</span>
+<span class="nc" id="L40">        fred.put(Field.AGE, &quot;90&quot;);</span>
+<span class="nc" id="L41">        fred.put(Field.ANIMAL_CLASS, &quot;Reptile&quot;);</span>
+<span class="nc" id="L42">        fred.put(Field.COLOUR, &quot;Green&quot;);</span>
+<span class="nc" id="L43">        fred.put(Field.SPECIES, &quot;Galapagos Turtle&quot;);</span>
+<span class="nc" id="L44">        fred.put(Field.NUM_LEGS, &quot;4&quot;);</span>
+
+<span class="nc" id="L46">        animals.add(bob);</span>
+<span class="nc" id="L47">        animals.add(lucy);</span>
+<span class="nc" id="L48">        animals.add(fred);</span>
+<span class="nc" id="L49">    }</span>
+
+    static String getData(int animalKey, Field animalField) {
+<span class="nc" id="L52">        Map&lt;Field, String&gt; animal = animals.get(animalKey);</span>
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        if (null == animal) {</span>
+<span class="nc" id="L55">            throw new IllegalArgumentException();</span>
+        }
+
+        try {
+<span class="nc" id="L59">            Thread.sleep(10000);</span>
+<span class="nc" id="L60">        } catch (InterruptedException ignored) {}</span>
+
+<span class="nc" id="L62">        return animal.get(animalField);</span>
+    }
+
+<span class="nc" id="L65">    public enum Field {</span>
+<span class="nc" id="L66">        SPECIES, NUM_LEGS, COLOUR, NAME, AGE, ANIMAL_CLASS</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
